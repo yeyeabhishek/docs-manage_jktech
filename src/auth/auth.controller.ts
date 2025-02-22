@@ -1,5 +1,14 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, HttpStatus, HttpCode, Request,  } from '@nestjs/common';
 import { AuthService } from './auth.service';
+// import { 
+//     Controller, 
+//     Post, 
+//     Body, 
+//     UseGuards, 
+//     Request, 
+//     HttpCode, 
+//     HttpStatus 
+//   } from '@nestjs/common';
 
 @Controller('auth')
 export class AuthController {
@@ -13,5 +22,14 @@ export class AuthController {
   @Post('login')
   login(@Body() body) {
     return this.authService.login(body.email, body.password);
+  }
+
+  
+    @Post('logout')
+  @HttpCode(HttpStatus.OK)
+  async logout(@Request() req) {
+          // In JWT, logout is typically handled client-side by removing the token
+
+    return { message: 'Logout successful' };
   }
 }

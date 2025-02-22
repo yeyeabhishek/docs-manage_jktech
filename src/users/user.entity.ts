@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, ManyToMany, JoinTable } from 'typeorm';
+import { Role } from '../roles/role.entity';
 
 export enum UserRole {
   ADMIN = 'admin',
@@ -7,19 +8,23 @@ export enum UserRole {
   USER = 'USER',
 }
 
-  
-
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column({ unique: true })
   email: string;
 
-  @Column()
-  password: string;
+  @Column({ nullable: true }) // Allows null values for passwords
+  passwordHash?: string;
 
-  @Column({ type: 'enum', enum: UserRole, default: UserRole.VIEWER })
-  role: UserRole;
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @ManyToMany(() => Role, (role) => role.users, { cascade: true }) 
+  @JoinTable()
+  roles: Role[];
+    documents: any;
+    
 }

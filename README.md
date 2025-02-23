@@ -1,3 +1,6 @@
+**High-Level System Architecture**
+
+![image](https://github.com/user-attachments/assets/a0b719bb-d6cc-4511-b902-5df6590a7d14)
 
 ## Installation
 ## JKTECH Backend 🚀

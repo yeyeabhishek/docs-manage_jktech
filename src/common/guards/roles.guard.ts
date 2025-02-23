@@ -1,7 +1,7 @@
 import { Injectable, CanActivate, ExecutionContext, ForbiddenException } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
-import { CustomRequest } from '../auth/custom-request.interface';
+import { CustomRequest } from '../../auth/custom-request.interface';
 
 @Injectable()
 export class RolesGuard implements CanActivate {

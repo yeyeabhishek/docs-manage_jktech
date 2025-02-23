@@ -5,7 +5,7 @@ import { DocumentService } from './document.service';
 import { DocumentsController } from './documents.controller';
 import { Document } from './document.entity'; 
 import { JwtModule } from '@nestjs/jwt';
-import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { AuthModule } from '../auth/auth.module';
 import { User } from '../users/user.entity'; 
 

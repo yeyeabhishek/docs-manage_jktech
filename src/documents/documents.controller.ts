@@ -2,7 +2,7 @@
 
 import { Controller, Post, UploadedFile, UseInterceptors, Get, UseGuards, Body, Request, Delete, Param, HttpException, HttpStatus } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { DocumentsService } from './documents.service';
 import { DocumentService } from './document.service'; 
 import { InjectRepository } from '@nestjs/typeorm';

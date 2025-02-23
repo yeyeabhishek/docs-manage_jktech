@@ -1,46 +1,3 @@
-// import { Injectable } from '@nestjs/common';
-// import { InjectRepository } from '@nestjs/typeorm';
-// import { Repository } from 'typeorm';
-// import { Document } from './document.entity';
-
-// @Injectable()
-// export class DocumentService {
-//   constructor(
-//     @InjectRepository(Document)
-//     private documentRepository: Repository<Document>,
-//   ) {}
-
-//   async saveFileMetadata(fileName: string, fileUrl: string, uploadedBy: string) {
-//     console.log("Saving file metadata:", { fileName, fileUrl, uploadedBy });
-
-//     const newDocument = this.documentRepository.create({
-//       fileName,
-//       fileUrl,
-//       uploadedBy: { id: uploadedBy }, // ✅ Fix: Pass an object with ID
-//     });
-
-//     return this.documentRepository.save(newDocument);
-//   }
-// }
-
-
-// import { Injectable } from '@nestjs/common';
-// import { InjectRepository } from '@nestjs/typeorm';
-// import { Repository } from 'typeorm';
-// import { Document } from './document.entity';
-
-// @Injectable()
-// export class DocumentService {
-//   constructor(
-//     @InjectRepository(Document) // ✅ Inject Repository
-//     private readonly documentRepository: Repository<Document>,
-//   ) {}
-
-//   async saveFileMetadata(filename: string, fileUrl: string, uploadedBy: string) {
-//     const document = this.documentRepository.create({ filename, fileUrl, uploadedBy });
-//     return this.documentRepository.save(document);
-//   }
-// }
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -57,7 +14,7 @@ export class DocumentService {
     @InjectRepository(User)
     private readonly userRepository: Repository<User>, 
 
-    private readonly documentsService: DocumentsService // ✅ Injecting DocumentsService
+    private readonly documentsService: DocumentsService
   ) {}
 
   async saveFileMetadata(fileName: string, fileUrl: string, fileKey: string, uploadedByEmail: string): Promise<void> {
@@ -73,43 +30,18 @@ export class DocumentService {
       uploadedBy: { id: user.id },
     });
 
-    await this.documentRepository.save(document); // ✅ Save metadata to DB
+    await this.documentRepository.save(document); 
 
-    await this.documentsService.deleteFileFromS3(fileKey); // ✅ Corrected service call
+    await this.documentsService.deleteFileFromS3(fileKey); 
+  }
+
+  async deleteDocument(documentId: string): Promise<boolean> {
+    const deleteResult = await this.documentRepository.delete(documentId);
+    return deleteResult.affected > 0; 
+  }
+  async getAllDocuments(): Promise<Document[]> {
+    return await this.documentRepository.find();
   }
 }
-
-
-
-
-
-//=====================
-
-// import { InjectRepository } from '@nestjs/typeorm';
-// import { Repository } from 'typeorm';
-// import { Document } from './document.entity';
-
-// @Injectable()
-// export class DocumentService {
-//   constructor(
-//     @InjectRepository(Document)
-//     private documentRepository: Repository<Document>,
-//   ) {}
-
-//   async saveFileMetadata(fileName: string, fileUrl: string, uploadedBy: string) {
-//     console.log("===========fileName==============",fileName)
-//     console.log("===========fileUrl==============",fileUrl)
-//     console.log("===========uploadedBy==============",uploadedBy)
-
-//     const newDocument = this.documentRepository.create({
-//       fileName,
-//       fileUrl,
-//       uploadedBy: { id: uploadedBy }, // Fix: Pass an object with ID for relation
-//     });
-//     const result = await this.documentRepository.save(newDocument);
-//     console.log("==========saveFileMetadata==============",result)
-//     return result
-//   }
-// }
 
 

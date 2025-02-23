@@ -12,8 +12,6 @@ export class DocumentsService {
   });
 
   async uploadFile(file: Express.Multer.File) {
-    console.log("===========Abhishek Upload======");
-
     const params = {
       Bucket: process.env.AWS_S3_BUCKET,
       Key: `documents/${Date.now()}-${file.originalname}`,
@@ -41,10 +39,4 @@ export class DocumentsService {
     }
   }
 }
-
-
-
-
-
-//=============================================
 

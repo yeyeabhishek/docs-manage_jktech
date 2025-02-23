@@ -11,12 +11,6 @@ export class RoleService {
   ) {}
 
   async createRole(name: string): Promise<Role> {
-    // const role = new Role();
-    // role.name = name;
-    // console.log("=======role============",role)
-    // console.log("==========name==========",name)
-    // return this.roleRepository.save(role);
-
         // 🔍 Check if the role already exists
         const existingRole = await this.roleRepository.findOne({ where: { name } });
         if (existingRole) {

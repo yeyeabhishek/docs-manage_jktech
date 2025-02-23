@@ -13,6 +13,6 @@ export const AppDataSource = new DataSource({
   database: process.env.DB_NAME || 'docs_manage_jktech',
   entities: [User, Role, Document, IngestionProcess],
   migrations: ['src/migrations/*.ts'],
-  synchronize: false, // Ensure it's false for migrations
+  synchronize: false, 
   logging: true,
 });

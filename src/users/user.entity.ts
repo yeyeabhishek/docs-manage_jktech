@@ -16,14 +16,18 @@ export class User {
   @Column({ unique: true })
   email: string;
 
-  @Column({ nullable: true }) // Allows null values for passwords
+  @Column({ nullable: true }) 
   passwordHash?: string;
 
   @CreateDateColumn()
   createdAt: Date;
 
   @ManyToMany(() => Role, (role) => role.users, { cascade: true }) 
-  @JoinTable()
+  @JoinTable({
+    name: 'user_roles_role', 
+    joinColumn: { name: 'userId', referencedColumnName: 'id' },
+    inverseJoinColumn: { name: 'roleId', referencedColumnName: 'id' }
+  })
   roles: Role[];
     documents: any;
     

@@ -12,7 +12,7 @@ export class Document {
   @Column()
   fileUrl: string;
 
-  @ManyToOne(() => User, (user) => user.documents, { nullable: true }) // ✅ Corrected relation
+  @ManyToOne(() => User, (user) => user.documents, { nullable: true }) 
   uploadedBy: User;
 
   @CreateDateColumn()

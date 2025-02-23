@@ -2,7 +2,6 @@ import 'reflect-metadata';
 import { DataSource } from 'typeorm';
 import * as dotenv from 'dotenv';
 
-// Load environment variables
 dotenv.config();
 
 const AppDataSource = new DataSource({
@@ -12,8 +11,8 @@ const AppDataSource = new DataSource({
   username: process.env.DB_USERNAME || 'postgres',
   password: process.env.DB_PASSWORD || 'abhishek123',
   database: process.env.DB_NAME || 'docs_manage_jktech',
-  synchronize: false, // Set to false when using migrations
-  migrations: ['dist/migrations/*.js'], // Ensure your migrations are compiled
+  synchronize: false,
+  migrations: ['dist/migrations/*.js'], 
   entities: ['dist/**/*.entity.js'],
   logging: true,
 });

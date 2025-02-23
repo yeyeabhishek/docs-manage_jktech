@@ -1,8 +1,8 @@
-import { Controller, Get, Param, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Put, UseGuards } from '@nestjs/common';
 import { UserService } from './user.service';
-import { AuthGuard } from '../auth/auth.guard'; // Ensure authentication
-import { RolesGuard } from '../auth/roles.guard'; // Ensure only admins can access
-import { Roles } from '../auth/roles.decorator';///auth/roles.decorator
+import { AuthGuard } from '../auth/auth.guard';
+import { RolesGuard } from '../auth/roles.guard'; 
+import { Roles } from '../auth/roles.decorator';
 import { UserRole } from './user.entity'; 
 
 
@@ -14,19 +14,20 @@ export class UserController {
   async getUserByEmail(@Param('email') email: string) {
     return this.userService.findByEmail(email);
   }
-
   @Get()
-  @UseGuards(AuthGuard, RolesGuard) // Protect this route
-  @Roles(UserRole.ADMIN) // Only Admins can get all users
+  @UseGuards(AuthGuard, RolesGuard) 
+  @Roles(UserRole.ADMIN) 
   async getAllUsers() {
     console.log("=========admin abhi===========")
     return this.userService.findAllUsers();
   }
-  async assignRole(
-    // @Param('userId') userId: string,
-    @Param('roleName') roleName: string,
-  ) {
-    return this.userService.assignRoleToUser(roleName);
+
+  @UseGuards(AuthGuard, RolesGuard)  
+  @Roles('admin')  
+  @Put(':id/role')
+  async updateUserRole(@Param('id') userId: string, @Body() body) {
+    console.log("===========updateUserRole===========")
+    return this.userService.updateUserRole(userId, body.roleName); 
   }
   
 }

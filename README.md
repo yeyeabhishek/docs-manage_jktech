@@ -64,10 +64,17 @@ npm run start:prod
 ### User Management
 - PUT `/users/:id/role` - Update user role (Admin only)
 
+## Upload to S3 Bucket 
+ - POST `documents/upload`
+ ## After Uploading the document to s3 then that document will be feeded to DB table document
+ - SELECT *FROM  "document";
+
+
 ### Documents
-- POST `/documents` - Upload document
 - GET `/documents` - List all documents
 - DELETE `/documents/:id` - Delete document
+
+- GET `roles` -Get ROles
 
 ### Ingestion
 - POST `/ingestion/trigger` - Trigger document ingestion
@@ -79,7 +86,31 @@ npm run start:prod
 - Editor: Document upload and ingestion
 - Viewer: Read-only access
 
+## Database Schema
 
+The project uses a relational database with the following key tables:
+
+- **users**: Stores user details.
+- **roles**: Defines roles (e.g., admin, editor).
+- **documents**: Stores document metadata.
+
+### ERD Diagram:
+[Include an image or link to an ERD diagram here]
+
+### User Table Structure
+| Column      | Type       | Description                 |
+|------------|-----------|-----------------------------|
+| id         | UUID      | Unique user identifier      |
+| email      | String    | User's email address       |
+| password   | String    | Hashed password            |
+| created_at | Timestamp | When the user was created  |
+
+## DB Table
+ - user
+ - document
+ - ingestion_process
+ - user_roles_role
+ - role
 
 
 ## License

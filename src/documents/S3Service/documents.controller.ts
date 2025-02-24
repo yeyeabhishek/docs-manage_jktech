@@ -13,11 +13,11 @@ import {
   HttpStatus 
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
-import { DocumentsService } from './documents.service';
-import { DocumentService } from './document.service'; 
+import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
+import { DocumentsService } from '../S3Service/documents.service';
+import { DocumentService } from '../document.service'; 
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from 'src/users/user.entity';
+import { User } from '../../users/user.entity';
 import { Repository } from 'typeorm';
 
 /**

@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DocumentsService } from './documents.service';
-import { DocumentService } from './document.service';
+import { DocumentService } from '../document.service';
 import { DocumentsController } from './documents.controller';
-import { Document } from './document.entity'; 
+import { Document } from '../document.entity'; 
 import { JwtModule } from '@nestjs/jwt';
-import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
-import { AuthModule } from '../auth/auth.module';
-import { User } from '../users/user.entity'; 
+import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
+import { AuthModule } from '../../auth/auth.module';
+import { User } from '../../users/user.entity'; 
 
 /**
  * Module responsible for handling document-related functionality.

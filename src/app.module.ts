@@ -2,18 +2,22 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
-import { DocumentsModule } from './documents/documents.module';
+import { DocumentsModule } from './documents/S3Service/documents.module';
 import { User } from './users/user.entity';
 import { Role } from './roles/role.entity';
 import { Document } from './documents/document.entity';
 import { IngestionProcess } from './ingestion/ingestion.entity';
 import { RoleModule } from './roles/role.module';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
 
 /**
  * The root module of the application.
  * It imports and configures all necessary modules and dependencies.
  */
 @Module({
+  controllers: [AppController],
+  providers: [AppService],  // <--- Add this
   imports: [
     /**
      * ConfigModule: Loads environment variables globally.

@@ -14,12 +14,9 @@ export class AuthGuard implements CanActivate {
       throw new UnauthorizedException('No token provided');
     }
     const token = authHeader.split(' ')[1]; 
-    console.log("=========token============",token)
     try {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
       request.user = decoded;
-      console.log("===========decoded=============",decoded)
-      console.log("=============request.user===========",request.user)
       return true;
     } catch (error) {
       console.error("JWT Verification Error:", error.message);

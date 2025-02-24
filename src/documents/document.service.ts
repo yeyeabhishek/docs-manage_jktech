@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Document } from './document.entity';
 import { User } from '../users/user.entity';
-import { DocumentsService } from './documents.service';
+import { DocumentsService } from './S3Service/documents.service';
 
 /**
  * This  Service responsible for handling document-related operations.

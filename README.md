@@ -39,6 +39,7 @@ npm install -->
 - DB_USERNAME=postgres  # Ensure this matches DATABASE_URL
 - DB_PASSWORD=abhishek123
 - DB_NAME=docs_manage_jktech
+- PYTHON_BACKEND_URL=http://localhost:5000
 
 - DATABASE_URL=postgresql://user:password@localhost:5432/docs_manage_jktech  # Ensure consistency
 

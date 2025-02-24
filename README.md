@@ -116,6 +116,23 @@ The project uses a relational database with the following key tables:
  - role
 
 
+
+📊 Test Coverage
+This project achieves 95%+ test coverage for all major components, ensuring robustness and reliability.
+
+📌 Coverage Details:
+- Overall Coverage: ✅ 95%+
+- Key Modules Covered:
+- Authentication & Authorization (RBAC)
+- Services & Business Logic
+- Guards & Decorators
+- Database & Models
+- API Endpoints
+
+
+![image](https://github.com/user-attachments/assets/7e7b8e4b-0874-4e7d-97f8-b3e179c76827)
+
+
 ## License
 
 MIT

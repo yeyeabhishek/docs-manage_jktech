@@ -40,7 +40,7 @@ npm install -->
 - DB_PASSWORD=abhishek123
 - DB_NAME=docs_manage_jktech
 
-- DATABASE_URL=postgresql://postgres:abhishek123@localhost:5432/docs_manage_jktech  # Ensure consistency
+- DATABASE_URL=postgresql://user:password@localhost:5432/docs_manage_jktech  # Ensure consistency
 
 
 ## 🚀 Running the Application

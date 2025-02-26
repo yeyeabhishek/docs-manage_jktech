@@ -32,6 +32,12 @@ export class AuthService {
   async register(email: string, password: string, role: UserRole) {
     console.log('Checking role:', role);
 
+    // Check if the user already exists
+  const existingUser = await this.userRepository.findOne({ where: { email } });
+  if (existingUser) {
+    throw new Error('User with this email already exists');
+  }
+
     // Hashing the password before storing it
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -81,7 +87,7 @@ export class AuthService {
    */
   async login(email: string, password: string) {
     const user = await this.validateUser(email, password);
-
+     console.log("=========user===========",user)
     // Create the JWT payload
     const payload = {
       id: user.id,

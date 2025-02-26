@@ -33,25 +33,4 @@ export class DocumentsService {
 
     return this.s3.upload(params).promise();
   }
-
-  /**
-   * Deletes a file from the S3 bucket.
-   * @param fileKey - The key (path) of the file to be deleted in S3.
-   * @returns A promise that resolves when the file is successfully deleted.
-   */
-  async deleteFileFromS3(fileKey: string): Promise<void> {
-    try {
-      const deleteParams = {
-        Bucket: process.env.AWS_S3_BUCKET,
-        Key: fileKey,
-      };
-
-      console.log(`Deleting file from S3: ${fileKey}`);
-      await this.s3.deleteObject(deleteParams).promise();
-      console.log(`✅ File deleted successfully from S3: ${fileKey}`);
-    } catch (error) {
-      console.error('❌ Error deleting file from S3:', error);
-      throw new Error('Failed to delete file from S3');
-    }
-  }
 }

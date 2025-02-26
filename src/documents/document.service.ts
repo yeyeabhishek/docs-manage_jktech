@@ -53,9 +53,7 @@ export class DocumentService {
     });
 
     await this.documentRepository.save(document); 
-
-    // Delete the file from S3 after saving metadata
-    await this.documentsService.deleteFileFromS3(fileKey); 
+ 
   }
 
   /**
@@ -77,4 +75,7 @@ export class DocumentService {
   async getAllDocuments(): Promise<Document[]> {
     return await this.documentRepository.find();
   }
+
+
+  
 }
